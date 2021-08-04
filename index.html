@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="listaTelefonica">
+	<meta charset="UTF-8">
+
 	<style>
 		.jumbotron {
 			width: 400px;
@@ -8,7 +10,9 @@
 			margin-right: auto;
 			text-align: center;
 		}
-
+		.form-control {
+			margin-bottom: 10px;
+		}
 	</style>
 
 	<head>
@@ -41,6 +45,9 @@
 					<td>{{contato.telefone}}</td>
 				</tr>
 			</table>
+			</hr>
+			<input class="form-control" type="text" ng-model="nome" />
+			<input class="form-control" type="text" ng-model="telefone" />
 		</div>
 	</body>
 </html>
