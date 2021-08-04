@@ -14,7 +14,7 @@
 			margin-top: 20px;
 		}
 		.form-control {
-			margin-bottom: 10px;
+			margin-bottom: 5px;
 		}
 	</style>
 
@@ -55,7 +55,7 @@
 			</hr>
 			<input class="form-control" type="text" placeholder="Nome" ng-model="contato.nome" />
 			<input class="form-control" type="text" placeholder="Telefone" ng-model="contato.telefone" />
-			<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)">
+			<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">
 				Adicionar contato
 			</button>
 		</div>
