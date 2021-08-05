@@ -1,4 +1,6 @@
+<!DOCTYPE html>
 <html ng-app="listaTelefonica">
+    <meta charset="UTF-8">
 	<head>
 		<title>Lista Telefônica</title>
 		<link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
@@ -40,19 +42,25 @@
                                             $scope.contatos.push(angular.copy(contato));
 					                        delete $scope.contato;
                                         };
+                            $scope.apagarContato = function (contatos) {
+                                            $scope.contatos = contatos.filter( function (contato) {
+                                                            if (!contato.selecionado) return contato;
+                                                        });
+                                        };
                         });
 		</script>
 	</head>
 	<body ng-controller="listaTelefonicaCtrl">
 		<div class="jumbotron">
 			<h3>{{app}}</h3>
-			<table class="table table-striped">
+            <table ng-show="contatos.length > 0" class="table table-striped">
 				<tr>
 					<th>Nome</th>
 					<th>Telefone</th>
 					<th>Operadora</th>
 				</tr>
 				<tr ng-repeat="contato in contatos">
+                    <td> <input type="checkbox" ng-model="contato.selecionado" /></td>
 					<td>{{contato.nome}}</td>
 					<td>{{contato.telefone}}</td>
 					<td>{{contato.operadora.nome}}</td>
@@ -64,9 +72,13 @@
             <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
                 <option value="">Selecionar Operadora</option>
             </select>
+            {{contatos}}
 			<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">
 				Adicionar contato
 			</button>
+			<button class="btn btn-danger btn-block" ng-click="apagarContato(contatos)">
+                Apagar contato
+            </button>
 		</div>
 	</body>
 </html>
