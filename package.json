@@ -18,7 +18,6 @@
     "\"angularjs\""
   ],
   "dependencies": {
-    "body-parser": "^1.13.3",
     "express": "^3.21.2"
   },
   "author": "Italo",
