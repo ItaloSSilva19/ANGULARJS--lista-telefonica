@@ -19,10 +19,23 @@
 		<script src="js/filters/ellipsisFilter.js"></script>
 		<script src="js/directives/uiAlertDirective.js"></script>
 		<script src="js/directives/uiDateDirective.js"></script>
+		<script src="js/directives/uiAccordionDirective.js"></script>
 
 	</head>
 	<body ng-controller="listaTelefonicaCtrl">
+	
 		<div class="jumbotron">
+		<ui-accordions>
+			<ui-accordion title="Primeiro">
+				Esse é o conteúdo
+			</ui-accordion>
+			<ui-accordion title="Segundo">
+				Esse é o conteúdo
+			</ui-accordion>
+			<ui-accordion title="Terceiro">
+				Esse é o conteúdo
+			</ui-accordion>
+		</ui-accordions>
 			<h3>{{app}}</h3>
 			<input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?"/>
             <table ng-show="contatos.length > 0" class="table">
