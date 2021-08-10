@@ -18,14 +18,12 @@
 		<script src="js/filters/nameFilter.js"></script>
 		<script src="js/filters/ellipsisFilter.js"></script>
 		<script src="js/directives/uiAlertDirective.js"></script>
+		<script src="js/directives/uiDateDirective.js"></script>
 
 	</head>
 	<body ng-controller="listaTelefonicaCtrl">
 		<div class="jumbotron">
 			<h3>{{app}}</h3>
-			<ui-alert title="Ops, aconteceu um problema!">
-				{{error}}
-			</ui-alert>
 			<input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?"/>
             <table ng-show="contatos.length > 0" class="table">
 				<tr>
@@ -49,9 +47,10 @@
 			<form name="contatoForm">
 				<input class="form-control" name="nome" type="text" placeholder="Nome" ng-model="contato.nome" ng-required="true" ng-minlength="5" />
 				<input class="form-control" name="telefone" type="text" placeholder="Telefone" ng-model="contato.telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/" />
-    	        <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome + ' ( ' + (operadora.preco | currency) + ' ) ' for operadora in operadoras | orderBy:'nome'">
-        	        <option value="">Selecionar Operadora</option>
-            	</select>
+				<input class="form-control" type="text" ng-model="contato.data" name="data" placeholder="Data" ui-date/>
+    	  <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome + ' ( ' + (operadora.preco | currency) + ' ) ' for operadora in operadoras | orderBy:'nome'">
+          <option value="">Selecionar Operadora</option>
+        </select>
 				<div ng-show="contatoForm.nome.$dirty" ng-messages="contatoForm.nome.$error">
 					<div ng-message="required" class="alert alert-danger">
 					    Por favor, preencha o nome.
