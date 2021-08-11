@@ -4,7 +4,7 @@ Foi desenvolvido por Rodrigo Branas, e está disponível no [youtube](https://yo
 Este repositório contem o meu desenvolvimento durante o curso.
 Para fazer uso desse repositório baixe a versão adequada do [Angularjs](https://code.angularjs.org/1.3.11) que é a versão 1.3.11 e instale o [módulo express](https://www.npmjs.com/package/express);
 Execute:
--npm install express --save
+npm install express --save
 
 Depois suba o server com o comando: node SERVIDOR.js 
 
