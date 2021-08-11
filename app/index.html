@@ -8,13 +8,16 @@
 		<link rel="stylesheet" type="text/css" href="css/ui.css">
 		<script src="lib/angular/angular.js"></script>
 		<script src="lib/angular/angular-messages.js"></script>
+		<script src="lib/angular/angular-route.js"></script>
 		<script src="lib/serialGenerator/serialGenerator.js"></script>
 		<script src="lib/ui/accordion.js"></script>
 		<script src="js/app.js"></script>
 		<script src="js/controllers/listaTelefonicaCtrl.js"></script>
+		<script src="js/controllers/novoContatoCtrl.js"></script>
 		<script src="js/services/contatosAPIService.js"></script>
 		<script src="js/services/operadorasAPIService.js"></script>
 		<script src="js/config/serialGeneratorConfig.js"></script>
+		<script src="js/config/routeConfig.js"></script>
 		<script src="js/value/configValue.js"></script>
 		<script src="js/filters/nameFilter.js"></script>
 		<script src="js/filters/ellipsisFilter.js"></script>
@@ -22,72 +25,8 @@
 		<script src="js/directives/uiDateDirective.js"></script>
 
 	</head>
-	<body ng-controller="listaTelefonicaCtrl">
-	
-		<div class="jumbotron">
-		<ui-accordions>
-			<ui-accordion title="Primeiro">
-				Esse é o conteúdo
-			</ui-accordion>
-			<ui-accordion title="Segundo">
-				Esse é o conteúdo
-			</ui-accordion>
-			<ui-accordion title="Terceiro">
-				Esse é o conteúdo
-			</ui-accordion>
-		</ui-accordions>
-			<h3>{{app}}</h3>
-			<input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?"/>
-            <table ng-show="contatos.length > 0" class="table">
-				<tr>
-					<th></th>
-					<th>Código Cliente</th>
-					<th><a href="" ng-click="ordenarPor('nome')">Nome</a></th>
-					<th><a href="" ng-click="ordenarPor('telefone')">Telefone</a></th>
-					<th><a href="" ng-click="ordenarPor('operadora.nome')">Operadora</a></th>
-					<th><a href="" ng-click="ordenarPor('data')">Data</a></th>
-				</tr>
-				<tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
-          <td> <input type="checkbox" ng-model="contato.selecionado" /></td>
-					<td>{{contato.serial}}</td>
-					<td>{{contato.nome | name | ellipsis:10}}</td>
-					<td>{{contato.telefone}}</td>
-					<td>{{contato.operadora.nome | lowercase}}</td>
-					<td>{{contato.data | date:'dd/MM/yyyy'}}</td>
-				</tr>
-			</table>
-			<hr />
-			<form name="contatoForm">
-				<input class="form-control" name="nome" type="text" placeholder="Nome" ng-model="contato.nome" ng-required="true" ng-minlength="5" />
-				<input class="form-control" name="telefone" type="text" placeholder="Telefone" ng-model="contato.telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/" />
-				<input class="form-control" type="text" ng-model="contato.data" name="data" placeholder="Data" ui-date/>
-    	  <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome + ' ( ' + (operadora.preco | currency) + ' ) ' for operadora in operadoras | orderBy:'nome'">
-          <option value="">Selecionar Operadora</option>
-        </select>
-				<div ng-show="contatoForm.nome.$dirty" ng-messages="contatoForm.nome.$error">
-					<div ng-message="required" class="alert alert-danger">
-					    Por favor, preencha o nome.
-				    </div>
-	    			<div ng-message="minlength" class="alert alert-danger">
-						O nome dever pelo menos 5 caracteres.
-					</div>
-				</div>
-				<div ng-show="contatoForm.telefone.$dirty" ng-messages="contatoForm.telefone.$error">
-					<div ng-message="required" class="alert alert-danger">
-					    Por favor, preencha o telefone.
-		    		</div>
-		    		<div ng-message="pattern" class="alert alert-danger">
-						O campo telefone deve ter o formato DDDDD-DDDD
-					</div>
-				</div>
-			</form>
-			<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-required="true" ng-disabled="contatoForm.$invalid">
-				Adicionar contato
-			</button>
-			<button class="btn btn-danger btn-block" ng-click="apagarContato(contatos)" ng-if="isContatoSelecionado(contatos)">
-                Apagar contato
-            </button>
-		</div>
+	<body>	
+		<div ng-view></div>
 		<div ng-include="'view/footer.html'"></div>
 	</body>
 </html>

@@ -1,8 +1,8 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 
-app.use(express.static(__dirname + '/public'));
-app.use(express.bodyParser());
+app.use(bodyParser.json());
 
 var contatos = [
 	{nome: "BrunO da silva", telefone: "9999-2222", data: new Date(), operadora: {nome: "Oi", codigo: 14, categoria: "Celular"}},
@@ -17,8 +17,6 @@ var operadoras = [
 	{nome: "Embratel", codigo: 21, categoria: "Fixo", preco: 2}
 ];
 
-app.listen(process.env.PORT || 3412);
-
 app.all('*', function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
@@ -30,6 +28,16 @@ app.get('/contatos', function(req, res) {
   res.json(contatos);
 });
 
+app.get('/contatos/:id', function(req, res) {
+  contatos.forEach(function (contato) {
+  	if (contato.id == req.params.id) {
+  		res.json(contato);
+  		return;
+  	}
+  });
+  res.status(404).end();
+});
+
 app.post('/contatos', function(req, res) {
   contatos.push(req.body);
   res.json(true);
@@ -38,3 +46,5 @@ app.post('/contatos', function(req, res) {
 app.get('/operadoras', function(req, res) {
   res.json(operadoras);
 });
+
+app.listen(process.env.PORT || 3412);

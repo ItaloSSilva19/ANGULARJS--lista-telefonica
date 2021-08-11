@@ -1,14 +1,10 @@
 {
   "name": "lista-telefonica",
   "version": "1.0.0",
-  "description": "lista telefonica",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib",
-    "backend": "backend"
-  },
+  "description": "lista telefonica",  "main": "backend/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server.js"
   },
   "repository": {
     "type": "git",
@@ -17,11 +13,12 @@
   "keywords": [
     "\"angularjs\""
   ],
-  "dependencies": {
-    "express": "^3.21.2"
-  },
   "author": "Italo",
   "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4"
+  },
   "bugs": {
     "url": "https://github.com/ItaloSSilva19/ANGULARJS--lista-telefonica/issues"
   },

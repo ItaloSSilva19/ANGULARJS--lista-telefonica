@@ -1,0 +1,29 @@
+<div class="jumbotron">
+	<form name="contatoForm">
+		<input class="form-control" name="nome" type="text" placeholder="Nome" ng-model="contato.nome" ng-required="true" ng-minlength="5" />
+		<input class="form-control" name="telefone" type="text" placeholder="Telefone" ng-model="contato.telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/" />
+		<input class="form-control" type="text" ng-model="contato.data" name="data" placeholder="Data" ui-date/>
+		<select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome + ' ( ' + (operadora.preco | currency) + ' ) ' for operadora in operadoras | orderBy:'nome'">
+			<option value="">Selecionar Operadora</option>
+		</select>
+		<div ng-show="contatoForm.nome.$dirty" ng-messages="contatoForm.nome.$error">
+			<div ng-message="required" class="alert alert-danger">
+				Por favor, preencha o nome.
+			</div>
+			<div ng-message="minlength" class="alert alert-danger">
+				O nome dever pelo menos 5 caracteres.
+			</div>
+		</div>
+		<div ng-show="contatoForm.telefone.$dirty" ng-messages="contatoForm.telefone.$error">
+			<div ng-message="required" class="alert alert-danger">
+				Por favor, preencha o telefone.
+			</div>
+			<div ng-message="pattern" class="alert alert-danger">
+				O campo telefone deve ter o formato DDDDD-DDDD
+			</div>
+		</div>
+	</form>
+	<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-required="true" ng-disabled="contatoForm.$invalid">
+		Adicionar contato
+	</button>
+</div>
