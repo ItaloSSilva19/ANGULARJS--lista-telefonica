@@ -9,3 +9,5 @@ npm install express --save
 Depois suba o server com o comando: node SERVIDOR.js 
 
 Obs: Para fazer uso do ng-include é necessário desabilitar no navegador a restrição ao Cross-Origin Resource Sharing (CORS) - HTTP.
+
+FINALIZADO
