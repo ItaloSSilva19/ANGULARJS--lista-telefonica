@@ -3,12 +3,12 @@ angular.module("listaTelefonica").config(function ($routeProvider) {
 		templateUrl: "view/contatos.html",
 		controller: "listaTelefonicaCtrl",
 		resolve: {
-			operadoras: function (operadorasAPI) {
-				return operadorasAPI.getOperadoras();
-			},
 			contatos: function (contatosAPI) {
 				return contatosAPI.getContatos();
 			},
+			operadoras: function (operadorasAPI) {
+				return operadorasAPI.getOperadoras();
+			}
 		}
 	});
 	$routeProvider.when("/novoContato", {
@@ -19,6 +19,9 @@ angular.module("listaTelefonica").config(function ($routeProvider) {
 				return operadorasAPI.getOperadoras();
 			}
 		}
+	});
+	$routeProvider.when("/error", {
+		templateUrl: "view/error.html"
 	});
 	$routeProvider.otherwise({redirectTo: "/contatos"});
 });
